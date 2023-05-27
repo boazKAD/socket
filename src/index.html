@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>socket io</title>
+</head>
+<body>
+    <h1> Get Response from the Server </h1>
+    <button type="submit" id="submit">Send Message </button>
+
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+        const Socket =io()
+        Socket.on('connect', () =>{
+            console.log(Socket.id);
+        })
+        let submit= document.getElementById("submit");
+        submit.addEventListener("click",() => {
+            Socket.emit('message', "hey there!");
+        })
+        Socket.on('server', (msg) =>{
+            console.log(msg);
+        })
+
+    </script>
+</body>
+</html>
